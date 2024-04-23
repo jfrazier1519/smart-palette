@@ -1,0 +1,39 @@
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+build/
+dist/
+coverage/
+
+# System files
+.DS_Store
+Thumbs.db
+*.iml
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Logs and coverage reports
+*.log
+coverage/
+*.lock
+*.bak
+
+# IDE or editor specific
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+
+# Operating system specific
+.DS_Store
+*.tmp

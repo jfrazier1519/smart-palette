@@ -71,7 +71,7 @@ function App() {
 
   const onDetectSubmit = () => {
     const fetchColorPalette = async () => {
-      const response = await fetch(`http://localhost:3001/palette`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/palette`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

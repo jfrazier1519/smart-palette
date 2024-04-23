@@ -24,7 +24,6 @@ Thumbs.db
 # Logs and coverage reports
 *.log
 coverage/
-*.lock
 *.bak
 
 # IDE or editor specific

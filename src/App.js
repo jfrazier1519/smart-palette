@@ -12,7 +12,21 @@ function App() {
   const [imageUrl, setImageUrl] = useState("");
   const [palette, setPalette] = useState([]);
   const [copyMessage, setCopyMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const gradient = CalculateGradient({ palette });
+
+  //Here to wake the server up when user loads page
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setIsLoading(false);
+      });
+  }, []);
 
   useEffect(() => {
     document.body.style.background = gradient;

@@ -6,6 +6,7 @@ import ParticlesBg from "particles-bg";
 import ColorPalette from "./components/ColorPalette/ColorPalette";
 import ImageContainer from "./components/ImageContainer/ImageContainer";
 import CalculateGradient from "./components/CalculateGradient/CalculateGradient";
+import Spinner from "./components/Spinner/Spinner";
 
 function App() {
   const [keyword, setKeyword] = useState("");
@@ -13,6 +14,21 @@ function App() {
   const [palette, setPalette] = useState([]);
   const [copyMessage, setCopyMessage] = useState(null);
   const gradient = CalculateGradient({ palette });
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const wakeupServer = async () => {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/`, {
+        method: "GET",
+      });
+
+      if (response.ok) {
+        setIsLoading(false);
+        const data = await response.json();
+      }
+    };
+    wakeupServer();
+  });
 
   useEffect(() => {
     document.body.style.background = gradient;
@@ -121,6 +137,13 @@ function App() {
         {copyMessage && (
           <div className="copy-message" style={{ marginTop: "10px" }}>
             {copyMessage}
+          </div>
+        )}
+      </div>
+      <div>
+        {isLoading && (
+          <div className="loading-message" style={{ marginTop: "10px" }}>
+            <Spinner />
           </div>
         )}
       </div>
